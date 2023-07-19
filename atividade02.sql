@@ -9,9 +9,9 @@ CREATE TABLE monitoria (
     idDisciplina INT,
     idAluno INT,
     idProfessor INT,
-    FOREIGN KEY (idDisciplina) REFERENCES disciplina(idDisciplina),
-    FOREIGN KEY (idAluno) REFERENCES aluno(id),
-    FOREIGN KEY (idProfessor) REFERENCES professor(id)
+    constraint FK_idDisciplina FOREIGN KEY (idDisciplina) REFERENCES disciplina(idDisciplina),
+    constraint FK_idAluno FOREIGN KEY (idAluno) REFERENCES aluno(id),
+    constraint FK_idProfessor FOREIGN KEY (idProfessor) REFERENCES professor(id)
 );
 
 -- Explicações:

@@ -4,7 +4,7 @@ CREATE TABLE pessoa (
     genero VARCHAR(1),
     data_nascimento DATE,
     idEndResidencial INT,
-    constraint idEndResidencial FOREIGN KEY (idEndResidencial) REFERENCES endereco(idEndResidencial)
+    constraint FK_idEndResidencial FOREIGN KEY (idEndResidencial) REFERENCES endereco(idEndResidencial)
 );
 
 -- 
@@ -17,7 +17,7 @@ CREATE table endereco(
     cep VARCHAR(8),
     idCidade INT,
     complemento VARCHAR(50),
-    constraint idCidade FOREIGN KEY (idCidade) REFERENCES cidade(idCidade)
+    constraint FK_idCidade FOREIGN KEY (idCidade) REFERENCES cidade(idCidade)
 );
 
 CREATE table cidade(
@@ -33,8 +33,8 @@ CREATE TABLE aluno (
     matricula INT,
     idCurso INT,
     dtIngresso DATE,
-    constraint id FOREIGN KEY (id) REFERENCES pessoa(id)
-    constraint idCurso FOREIGN KEY (idCurso) REFERENCES curso(idCurso)
+    constraint FK_idPessoa FOREIGN KEY (id) REFERENCES pessoa(id)
+    constraint FK_idCurso FOREIGN KEY (idCurso) REFERENCES curso(idCurso)
 );
 
 CREATE TABLE professor (
@@ -42,8 +42,8 @@ CREATE TABLE professor (
     matricula INT,
     dtIngresso DATE,
     idDepartamento INT,
-    constraint idDepartamento FOREIGN KEY (idDepartamento) REFERENCES departamento(idDepartamento),
-    constraint id FOREIGN KEY (id) REFERENCES pessoa(id)
+    constraint FK_idDepartamento FOREIGN KEY (idDepartamento) REFERENCES departamento(idDepartamento),
+    constraint FK_idPessoaProfessor FOREIGN KEY (id) REFERENCES pessoa(id)
 );
 
 CREATE TABLE departamento (
@@ -59,8 +59,8 @@ CREATE TABLE matricula (
     PRIMARY KEY (idTurma, idAluno),
     notaFinal DOUBLE,
     numFaltas INT,
-    constraint idTurma FOREIGN KEY (idTurma) REFERENCES turma(idTurma),
-    constraint idAluno FOREIGN KEY (idAluno) REFERENCES aluno(id)
+    constraint FK_idTurma FOREIGN KEY (idTurma) REFERENCES turma(idTurma),
+    constraint FK_idAluno FOREIGN KEY (idAluno) REFERENCES aluno(id)
 );
 
 CREATE TABLE turma (
@@ -73,9 +73,9 @@ CREATE TABLE turma (
     sem INT,
     nAlunos INT,
     nAvaliacoes INT,
-    constraint idCurso FOREIGN KEY (idCurso) REFERENCES curso(idCurso)
-    constraint idDisciplina FOREIGN KEY (idDisciplina) REFERENCES disciplina(idDisciplina),
-    constraint idProfessor FOREIGN KEY (idProfessor) REFERENCES professor(id)
+    constraint FK_idCursoTurma FOREIGN KEY (idCurso) REFERENCES curso(idCurso)
+    constraint FK_idDisciplina FOREIGN KEY (idDisciplina) REFERENCES disciplina(idDisciplina),
+    constraint FK_idProfessor FOREIGN KEY (idProfessor) REFERENCES professor(id)
 );
 
 CREATE TABLE curso (
@@ -91,8 +91,8 @@ CREATE TABLE gradecurricular (
     idDisciplina INT,
     PRIMARY KEY (idCurso, idDisciplina),
     obrigatoria char(1),
-    constraint idCurso FOREIGN KEY (idCurso) REFERENCES curso(idCurso),
-    constraint idDisciplina FOREIGN KEY (idDisciplina) REFERENCES disciplina(idDisciplina)
+    constraint FK_idCursoGrade FOREIGN KEY (idCurso) REFERENCES curso(idCurso),
+    constraint FK_idDisciplinaGrade FOREIGN KEY (idDisciplina) REFERENCES disciplina(idDisciplina)
 );
 
 CREATE TABLE disciplina (
