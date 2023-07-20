@@ -99,8 +99,8 @@ CREATE TABLE disciplina (
     idDisciplina INT PRIMARY KEY,
     codigo VARCHAR(8),
     nome VARCHAR(100),
-    ch INT
-    ementa VARCHAR(1000)
+    ch INT,
+    ementa VARCHAR(1000),
     programa VARCHAR(100)
 );
 
